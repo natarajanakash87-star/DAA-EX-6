@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Matrix Chain Multiplication
+</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #333;
+    line-height: 1.7;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px;
+}
+
+.hero {
+    background: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 50px 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+h2 {
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+ul {
+    padding-left: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background: #2563eb;
+    color: white;
+}
+
+pre {
+    background: #111827;
+    color: #00ff88;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.result {
+    background: #eef4ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #666;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Hero -->
+
+<div class="hero">
+
+<h1>
+Optimal Cost Computation in
+Matrix Chain Multiplication
+</h1>
+
+<p>
+Dynamic Programming Technique
+</p>
+
+</div>
+
+
+<!-- Problem Statement -->
+
+<div class="card">
+
+<h2>Problem Statement</h2>
+
+<p>
+Given a chain of four matrices with
+the following dimensions:
+</p>
+
+<ul>
+
+<li>A1 = 10 × 30</li>
+
+<li>A2 = 30 × 5</li>
+
+<li>A3 = 5 × 60</li>
+
+<li>A4 = 60 × 10</li>
+
+</ul>
+
+<p>
+Find the optimal order of multiplication
+using Dynamic Programming and determine
+the minimum number of scalar multiplications.
+</p>
+
+</div>
+
+
+<!-- Objective -->
+
+<div class="card">
+
+<h2>Objectives</h2>
+
+<ul>
+
+<li>Implement Matrix Chain Multiplication using DP.</li>
+
+<li>Calculate the minimum multiplication cost.</li>
+
+<li>Find the optimal parenthesization.</li>
+
+<li>Construct the DP cost table.</li>
+
+<li>Analyze the time and space complexity.</li>
+
+</ul>
+
+</div>
+
+
+<!-- Formula -->
+
+<div class="card">
+
+<h2>Dynamic Programming Formula</h2>
+
+<pre>
+
+m[i][j] = min {
+    m[i][k] + m[k+1][j]
+    + p[i-1] × p[k] × p[j]
+}
+
+where:
+
+i ≤ k < j
+
+</pre>
+
+</div>
+
+
+<!-- Matrix Dimensions -->
+
+<div class="card">
+
+<h2>Matrix Dimensions</h2>
+
+<table>
+
+<tr>
+<th>Matrix</th>
+<th>Rows</th>
+<th>Columns</th>
+</tr>
+
+<tr>
+<td>A1</td>
+<td>10</td>
+<td>30</td>
+</tr>
+
+<tr>
+<td>A2</td>
+<td>30</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>A3</td>
+<td>5</td>
+<td>60</td>
+</tr>
+
+<tr>
+<td>A4</td>
+<td>60</td>
+<td>10</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- Optimal Order -->
+
+<div class="card">
+
+<h2>Optimal Multiplication Order</h2>
+
+<div class="result">
+
+<h3>
+((A1 × A2) × (A3 × A4))
+</h3>
+
+<p>
+Minimum scalar multiplications:
+<strong>5000</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<!-- Calculation -->
+
+<div class="card">
+
+<h2>Cost Calculation</h2>
+
+<pre>
+
+Step 1:
+
+A1 × A2
+
+= 10 × 30 × 5
+= 1500
+
+
+Step 2:
+
+A3 × A4
+
+= 5 × 60 × 10
+= 3000
+
+
+Step 3:
+
+(A1A2) × (A3A4)
+
+= 10 × 5 × 10
+= 500
+
+
+Total Cost:
+
+1500 + 3000 + 500
+
+= 5000 scalar multiplications
+
+</pre>
+
+</div>
+
+
+<!-- DP -->
+
+<div class="card">
+
+<h2>Dynamic Programming Approach</h2>
+
+<p>
+
+The DP table stores the minimum
+number of scalar multiplications
+required to multiply matrices from
+Ai to Aj.
+
+For every possible split point k,
+the algorithm calculates the cost and
+selects the minimum value.
+
+</p>
+
+</div>
+
+
+<!-- Complexity -->
+
+<div class="card">
+
+<h2>Complexity Analysis</h2>
+
+<table>
+
+<tr>
+<th>Complexity</th>
+<th>Value</th>
+</tr>
+
+<tr>
+<td>Time Complexity</td>
+<td>O(n³)</td>
+</tr>
+
+<tr>
+<td>Space Complexity</td>
+<td>O(n²)</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- Sample Output -->
+
+<div class="card">
+
+<h2>Sample Output</h2>
+
+<pre>
+
+MATRIX CHAIN MULTIPLICATION
+
+Matrices:
+A1 = 10 x 30
+A2 = 30 x 5
+A3 = 5 x 60
+A4 = 60 x 10
+
+Minimum Number of Scalar Multiplications:
+5000
+
+Optimal Multiplication Order:
+((A1 × A2) × (A3 × A4))
+
+</pre>
+
+</div>
+
+
+<!-- Applications -->
+
+<div class="card">
+
+<h2>Applications</h2>
+
+<ul>
+
+<li>Compiler Optimization</li>
+
+<li>Database Query Optimization</li>
+
+<li>Scientific Computing</li>
+
+<li>Computer Graphics</li>
+
+<li>Numerical Computation</li>
+
+<li>Optimization Problems</li>
+
+</ul>
+
+</div>
+
+
+<!-- Conclusion -->
+
+<div class="card">
+
+<h2>Conclusion</h2>
+
+<p>
+
+Matrix Chain Multiplication demonstrates
+how Dynamic Programming can efficiently
+determine the optimal order of matrix
+multiplications.
+
+For the given four matrices, the optimal
+parenthesization is
+
+<strong>((A1 × A2) × (A3 × A4))</strong>
+
+and the minimum number of scalar
+multiplications required is
+
+<strong>5000</strong>.
+
+</p>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<strong>Developed by Akash N</strong><br>
+
+B.E. Computer Science and Engineering (AI)<br>
+
+Chennai Institute of Technology
+
+</footer>
+
+</body>
+
+</html>
